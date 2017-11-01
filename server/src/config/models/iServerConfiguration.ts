@@ -4,4 +4,5 @@ export default interface iServerConfiguration {
     mode?: string;
     staticDirs?: Array<string>;
     paths?: any;
+    routes?: any;
 }

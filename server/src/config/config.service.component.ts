@@ -3,14 +3,21 @@ import * as nconf from 'nconf';
 
 import DefaultServerConfiguration from './models/DefaultServerConfiguration';
 import iServerConfiguration from './models/iServerConfiguration';
-import Overrides from './custom.config';
+import Overrides from './models/custom.config';
 
-export default class Loader {
+export class ConfigServiceProvider {
     protected defaultConfig : iServerConfiguration;
     
-    public loadAppConfig(){
+    constructor(){
         this.loadConfig();
         this.finalize();
+    }
+    
+    /**
+     * We can essentially hide nconf internals from the application. Opens the door for replacement.
+     */
+    public get(path: string){
+        return nconf.get(path);
     }
     
     protected loadConfig (){
@@ -26,9 +33,7 @@ export default class Loader {
         
         //3. Static config (Lowest precedence)
         nconf.defaults(this.defaultConfig);
-        
-        console.log('Displaying running process with config below:');
-        console.log(nconf.get(null));
         return nconf;
     }
 }
+

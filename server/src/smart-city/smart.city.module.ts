@@ -1,9 +1,14 @@
 import { Module } from '@nestjs/common';
-import { HelloWorldController } from './controllers/hello.world.controller';
+
+//Controllers
+import { ServerConfigController } from './controllers/server.config.controller';
+
+//Components
+import { ConfigService } from './components/config.service.component';
 
 @Module({
-    controllers: [HelloWorldController],
+    controllers: [ServerConfigController],
+    components: [ConfigService],
     modules: [],
 })
-
 export class ApplicationModule {}
