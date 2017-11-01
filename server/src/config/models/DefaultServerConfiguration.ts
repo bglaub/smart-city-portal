@@ -13,6 +13,12 @@ export default class DefaultConfiguration {
             paths: {
                 root: path.resolve(__dirname, '..'),
                 routeDir: path.resolve(__dirname, '..', 'routes')
+            },
+            routes: {
+                'server-config': {
+                    message: 'Hello NestJS World!',
+                    test: 'server config'
+                }
             }
         };
     }
