@@ -1,5 +1,10 @@
-import Loader from './Config/Loader'
-import Bootstrap from './Bootstrap/Bootstrap'
+import * as bodyParser from 'body-parser';
+import { NestFactory } from '@nestjs/core';
+import { ApplicationModule } from './smart-city/smart.city.module';
 
-let configLoader = new Loader().loadAppConfig();
-let app = new Bootstrap().initExpressApp();
+async function bootstrap() {
+  const app = await NestFactory.create(ApplicationModule);
+  app.use(bodyParser.json());
+  await app.listen(3000);
+}
+bootstrap();
